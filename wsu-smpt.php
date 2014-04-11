@@ -9,6 +9,8 @@ Version: 0.1
 
 add_action( 'phpmailer_init', 'wsuwp_smtp_email' );
 /**
+ * Override some default settings during the PHPMailer init process.
+ *
  * @param PHPMailer $phpmailer
  */
 function wsuwp_smtp_email( $phpmailer ) {
