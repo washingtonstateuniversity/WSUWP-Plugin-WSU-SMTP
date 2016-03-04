@@ -19,17 +19,16 @@ function wsuwp_smtp_email( $phpmailer ) {
 	$phpmailer->Port = 25;
 	$phpmailer->SMTPAuth = false;
 
-	if ( ! is_admin() ) {
-		return;
-	}
-
-	$phpmailer->From = sanitize_email( 'www-data@' . $_SERVER['SERVER_NAME'] );
-
 	if ( is_multisite() ) {
 		$phpmailer->FromName = esc_html( get_option( 'blogname' ) ) . ' | ' . esc_html( get_current_site()->site_name );
 	} else {
 		$phpmailer->FromName = esc_html( get_option( 'blogname' ) );
 	}
 
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	$phpmailer->From = sanitize_email( 'www-data@' . $_SERVER['SERVER_NAME'] );
 	$phpmailer->Sender = $phpmailer->From;
 }
