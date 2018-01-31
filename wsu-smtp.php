@@ -19,16 +19,9 @@ function wsuwp_smtp_email( $phpmailer ) {
 	$phpmailer->Port = 25;
 	$phpmailer->SMTPAuth = false;
 
-	if ( is_multisite() ) {
-		$phpmailer->FromName = esc_html( get_option( 'blogname' ) ) . ' | ' . esc_html( get_current_site()->site_name );
-	} else {
-		$phpmailer->FromName = esc_html( get_option( 'blogname' ) );
-	}
+	// Append some text so that people receiving email know where it was generated.
+	$phpmailer->FromName = $phpmailer->FromName . ' (sent from WSUWP)';
 
-	if ( ! is_admin() ) {
-		return;
-	}
-
-	$phpmailer->From = sanitize_email( 'www-data@' . $_SERVER['SERVER_NAME'] );
+	// This may not be necessary.
 	$phpmailer->Sender = $phpmailer->From;
 }
