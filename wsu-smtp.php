@@ -4,7 +4,7 @@ Plugin Name: WSU SMTP Email
 Plugin URI: http://web.wsu.edu/
 Description: Use SMTP to send email from WordPress
 Author: washingtonstateuniversity, jeremyfelt
-Version: 0.1.2
+Version: 0.1.3
 */
 
 add_action( 'phpmailer_init', 'wsuwp_smtp_email' );
